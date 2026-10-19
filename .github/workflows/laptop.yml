@@ -1,0 +1,24 @@
+name: Fabbrica laptop
+
+on: push
+
+jobs:
+  costruisci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Costruisco il laptop
+        run: |
+          mkdir build
+          echo "Scheda madre" >> build/laptop.txt
+          echo "Tastiera" >> build/laptop.txt
+          echo "Schermo" >> build/laptop.txt
+          cat build/laptop.txt
+
+  controlla:
+    needs: costruisci
+    runs-on: ubuntu-latest
+    steps:
+      - name: Controllo il laptop
+        run: |
+          test -f build/laptop.txt
+          grep "Schermo" build/laptop.txt

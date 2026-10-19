@@ -1,0 +1,10 @@
+name: Primo workflow
+
+on: push
+
+jobs:
+  saluto:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dico ciao
+        run: echo "Ciao dalla mia prima pipeline!"

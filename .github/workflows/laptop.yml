@@ -14,10 +14,22 @@ jobs:
           echo "Schermo" >> build/laptop.txt
           cat build/laptop.txt
 
+      - name: Salvo il laptop come artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: laptop
+          path: build
+
   controlla:
     needs: costruisci
     runs-on: ubuntu-latest
     steps:
+      - name: Recupero il laptop
+        uses: actions/download-artifact@v4
+        with:
+          name: laptop
+          path: build
+
       - name: Controllo il laptop
         run: |
           test -f build/laptop.txt
